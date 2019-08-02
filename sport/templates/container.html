@@ -1,0 +1,163 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="FR-fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>IsO Playeur</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{% static '/public/styles/css/regular.css' %}"></link>
+    <link rel="stylesheet" href="{% static '/public/styles/css/mdb.min.css' %}"></link>
+    <link rel="stylesheet" href="{% static '/public/styles/css/bootstrap.min.css' %}"></link>
+    <link rel="stylesheet" href="{% static '/public/styles/css/animate.css' %}"></link>
+    <link rel="stylesheet" href="{% static '/public/styles/css/fontawesome.css' %}"></link>
+    <link rel="stylesheet" href="{% static '/public/styles/css/style.css' %}"></link>
+    {% block stylesheet %}
+
+    {% endblock %}
+    <style>
+        .empty{
+            width: 100% !important;
+            height: 100% !important;
+            font-size:2em!important;
+            font-weight: 500!important;
+            margin:0% 20% !important;
+
+        }
+        #header_nav {
+            background-color: rgba(0, 0, 0, 0.0) !important;
+        }
+
+        .loader {
+            position: fixed;
+            z-index: 99;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loader > img {
+            width: 100px;
+        }
+
+        .loader.hidden {
+            animation: fadeOut 1s;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes fadeOut {
+            100% {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        .thumb {
+            height: 100px;
+            border: 1px solid black;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="loader">
+    <img src="{% static 'public/img/preloader.gif' %}" alt="Loading..."/>
+</div>
+<!--[if lte IE 9]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+<!-- Add your site or application content here -->
+<!--Main Navigation-->
+<header>
+
+    <!-- Navbar -->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar" id="header_nav">
+        <div class="container">
+
+            <!-- Brand -->
+            <a class="navbar-brand waves-effect" href="{% url 'index' %}" target="_self">
+                <strong class="blue-text">ISO_PLAYER</strong>
+            </a>
+
+            <!-- Collapse -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Links -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav m-auto">
+                    <li class="nav-item {% if sport == 'soccer' %}active{% endif %} ml-4 mr-4">
+                        <a class="nav-link waves-effect" href="{% url 'list_league' 'soccer' %}">football
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item {% if sport == 'basket' %}active{% endif %} ml-4 mr-4">
+                        <a class="nav-link waves-effect" href={% url 'list_league' 'basketball' %}>Basketball</a>
+                    </li>
+                    <li class="nav-item {% if sport == 'tennis' %}active{% endif %} ml-4">
+                        <a class="nav-link waves-effect"
+                           href="{% url 'list_league' 'tennis' %}">Tennis</a>
+                    </li>
+                {% if sport %}
+                    <li class="nav-item {% if result is not None %}active{% endif %} ml-4">
+                        <a class="nav-link waves-effect"
+                           href="{% url 'result' sport %}">last result</a>
+                    </li>
+                {% endif %}
+ <li class="nav-item ml-5">
+                {% if request.user %}
+                    <a href="{% url 'logout' %}" class="btn btn-block btn-deep-orange" style="font-weight: bolder">deconnexion <i class="fa fa-door-open fa-1x"></i> </a>
+                {% else %}
+                    <a href="{% url 'login' %}" class="btn btn-block btn-outline-success" style="font-weight: bolder">connexion | inscription <i class="fa fa-door-closed fa-1x"></i> </a>
+                {% endif %}
+
+ </li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+    <!-- Navbar -->
+
+</header>
+<!--Main Navigation-->
+{% block content %}
+
+{% endblock %}
+<!--Footer-->
+<footer class="page-footer text-center font-small mt-4 wow fadeIn">
+    <!--Copyright-->
+    <div class="footer-copyright py-3">
+        © 2019 Copyright:
+        <a href="#" target="_blank">ISO_NaN </a>
+    </div>
+    <!--/.Copyright-->
+
+</footer>
+<!--/.Footer-->
+<script>
+    window.addEventListener("load", function () {
+        const loader = document.querySelector(".loader");
+        loader.className += " hidden"; // class "loader hidden"
+    });
+</script>
+<script src="{% static '/public/js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static '/public/js/fontawesome.js' %}"></script>
+<script src="{% static '/public/js/all.js' %}"></script>
+<script src="{% static '/public/js/mdb.js' %}"></script>
+<script src="{% static '/public/js/bootstrap.js' %}"></script>
+
+{% block javascript %}
+
+{% endblock %}
+</body>
+</html>

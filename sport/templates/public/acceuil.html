@@ -1,0 +1,84 @@
+{% extends "container.html" %}
+{% load static %}
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'public/styles/css/cards.css' %}">
+{% endblock %}
+{% block content %}
+
+    <div class="container">
+        <section class="section-tours" style="width: 100%;">
+            <div class=" text-center  u-margin-bottom-medium">
+                <br> <br>
+                <h2 class="heading-secondary">FAITES VOTRE CHOIX
+                    <hr>
+                </h2>
+                <br><br>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card__side card__side--front">
+                            <div class="card__picture card__picture--1">
+                                 
+                            </div>
+                            <h4 class="card__heading">
+                                <span class="card__heading-span card__heading-span--1">Football </span>
+                            </h4>
+                            <p style="padding: 10px;">commencer a parier sur les meilleur match du football des
+                                maintenant
+                            </p></div>
+                        <div class="card__side card__side--back card__side--back-1">
+                            <div class="card__cta">
+                                <a href="{% url 'list_league' 'soccer' %}" class="btn btn-card btn--white">Commencer</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card__side card__side--front">
+                            <div class="card__picture card__picture--2">
+                                 
+                            </div>
+                            <h4 class="card__heading">
+                                <span class="card__heading-span card__heading-span--2">BASKET </span>
+
+                            </h4>
+                            <p style="padding: 10px;">misez sur les meilleur rencontre du basket des maintenant</p>
+                        </div>
+                        <div class="card__side card__side--back card__side--back-3">
+                            <div class="card__cta">
+                                <a href="{% url 'list_league' 'basketball' %}" class="btn btn-card btn--white">Commencer</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card__side card__side--front">
+                            <div class="card__picture card__picture--3">
+                                 
+                            </div>
+                            <h4 class="card__heading">
+                                <span class="card__heading-span card__heading-span--3">TENNIS</span>
+
+                            </h4>
+                            <p style="padding: 10px;">echauffer vos portefeuille et mettez vous au tennis des maintenant</p>
+                        </div>
+                        <div class="card__side card__side--back card__side--back-3">
+                            <div class="card__cta">
+                                <a href="{% url 'list_league' 'tennis' %}" class="btn btn-card btn--white">Commencer</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <pre>
+    {{ sport }}
+    </pre>
+{% endblock %}
+{% block javascript %}
+
+{% endblock %}

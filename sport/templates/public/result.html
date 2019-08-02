@@ -1,0 +1,250 @@
+{% extends "container.html" %}
+{% load static %}
+
+{% block stylesheet %}
+    <!-- Your custom styles (optional) -->
+    <style>
+
+        .loader {
+
+            position: fixed;
+            z-index: 9999;
+            top: 0px;
+            left: 0px;
+            height: 100%;
+            width: 100%;
+            cursor: wait;
+        }
+
+        .score {
+            padding: 10% 0;
+            font-size: 1em;
+        }
+
+        .row [class^="equipe-"] {
+            padding-bottom: 1vh;
+        }
+
+        .event-result {
+            padding: 0 30%;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+
+    <!--Main layout-->
+    <main class="mt-5 pt-5">
+        <div class="container">
+            <!--Section: Cards-->
+            <section class="pt-4">
+                <div class="row">
+                    <!--Grid row-->
+                    {% if data|length >= 1 %}
+
+                        {% for event in data %}
+                            {% if event.statut == False %}
+                                <div class="wow fadeIn col-md-6 col-lg-4 col-xl-6 col-xs-12">
+
+                                    <!--Grid column-->
+                                    <div class="col-lg-6 xol-md-6 col-xl-12 ml-xl-12 mb-1">
+                                        <div class="row">
+                                            <div class="equipe-A col-md-4">
+                                                <!-- Card Wider -->
+                                                <div class="card card-cascade wider mt-2 mb-3"
+                                                     style="min-width:22vh;background-color:rgba(0,0,0,0.0);">
+                                                    <!-- Card image -->
+                                                    <div class="view view-cascade overlay">
+                                                        <img class="card-img-top" src="
+                                                                {% if event.home_team_logo != None %}{{ event.home_team_logo }}{% else %}{% static 'public/img/user_img/equipe.png' %}{% endif %}"
+                                                             alt="Card image cap">
+                                                        <a href="#">
+                                                            <div class="mask rgba-white-slight"></div>
+                                                        </a>
+                                                    </div>
+                                                    <!-- Card content -->
+                                                    <div class="card-body card-body-cascade text-center">
+
+                                                        <!-- Title -->
+                                                        <h6 class="card-title"><strong>{{ event.home_team }}</strong>
+                                                        </h6>
+
+                                                    </div>
+
+                                                </div>
+                                                <!-- Card Wider -->
+                                                {#                                        <p class="score_equipe_A flex-start">{{ event.home_score }}</p>#}
+                                                {#                                        <p class="space">-</p>#}
+                                                {#                                        <p class="score_equipe_B flex-end">{{ event.away_score }}</p>#}
+                                            </div>
+                                            <div class="score col-md-4" style="background-color:rgba(0,0,0,0.0);">
+                                                {% if event.result != None %}
+                                                    <p class="event-result">{{ event.home_score }}
+                                                        - {{ event.away_score }}</p>
+                                                {% else %}
+                                                    <p>{{ event.e }}</p>
+                                                {% endif %}
+
+                                                <p>{{ event.time_event }}</p>
+                                            </div>
+                                            <div class="equipe-B  col-md-3">
+                                                <!-- Card Wider -->
+                                                <div class="card card-cascade wider mt-2 mb-3"
+                                                     style="min-width:22vh;background-color:rgba(0,0,0,0.0);">
+
+                                                    <!-- Card image -->
+                                                    <div class="view view-cascade overlay">
+                                                        <img class="card-img-top" src="
+                                                                {% if event.away_team_logo != None %}{{ event.away_team_logo }}{% else %}{% static 'public/img/user_img/equipe.png' %}{% endif %}"
+                                                             alt="Card image cap">
+                                                        <a href="#">
+                                                            <div class="mask rgba-white-slight"></div>
+                                                        </a>
+                                                    </div>
+
+                                                    <!-- Card content -->
+                                                    <div class="card-body card-body-cascade text-center">
+
+                                                        <!-- Title -->
+                                                        <h6 class="card-title"><strong>{{ event.away_team }}</strong>
+                                                        </h6>
+
+                                                    </div>
+
+                                                </div>
+                                                <!-- Card Wider -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--Grid column-->
+                                </div>
+                            {% else %}
+                                <div class="wow fadeIn col-md-6 col-lg-4 col-xl-6 col-xs-12"
+                                     {% if event.win == True %}style="box-shadow: 0px 0px 5px 3px  rgba(80,200,40,0.6);"
+                                     {% else %}style="box-shadow: 0px 0px 5px 3px  rgba(200,76,74,0.6);"{% endif %}>
+                                    <!--Grid column-->
+                                    <div class="col-lg-6 xol-md-6 col-xl-12 ml-xl-12 mb-1">
+                                        <div class="row">
+                                            <div class="equipe-A col-md-4">
+                                                <!-- Card Wider -->
+                                                <div class="card card-cascade wider mt-2 mb-3"
+                                                     style="min-width:22vh;background-color:rgba(0,0,0,0.0);">
+                                                    <!-- Card image -->
+                                                    <div class="view view-cascade overlay">
+                                                        <img class="card-img-top" src="
+                                                                {% if event.home_team_logo != None %}{{ event.home_team_logo }}{% else %}{% static 'public/img/user_img/equipe.png' %}{% endif %}"
+                                                             alt="Card image cap">
+                                                        <a href="#">
+                                                            <div class="mask rgba-white-slight"></div>
+                                                        </a>
+                                                    </div>
+                                                    <!-- Card content -->
+                                                    <div class="card-body card-body-cascade text-center">
+
+                                                        <!-- Title -->
+                                                        <h6 class="card-title"><strong>{{ event.home_team }}</strong>
+                                                        </h6>
+
+                                                    </div>
+
+                                                </div>
+                                                <!-- Card Wider -->
+                                                {#                                        <p class="score_equipe_A flex-start">{{ event.home_score }}</p>#}
+                                                {#                                        <p class="space">-</p>#}
+                                                {#                                        <p class="score_equipe_B flex-end">{{ event.away_score }}</p>#}
+                                            </div>
+                                            <div class="score col-md-4" style="background-color:rgba(0,0,0,0.0);">
+                                                {% if event.result != None %}
+                                                    <p class="event-result">{{ event.home_score }}
+                                                        - {{ event.away_score }}</p>
+                                                {% else %}
+                                                    <p>{{ event.e }}</p>
+                                                {% endif %}
+
+                                                <p class="event-result">{{ event.statut }}</p>
+                                            </div>
+                                            <div class="equipe-B  col-md-3">
+                                                <!-- Card Wider -->
+                                                <div class="card card-cascade wider mt-2 mb-3"
+                                                     style="min-width:22vh;background-color:rgba(0,0,0,0.0);">
+
+                                                    <!-- Card image -->
+                                                    <div class="view view-cascade overlay">
+                                                        <img class="card-img-top" src="
+                                                                {% if event.away_team_logo != None %}{{ event.away_team_logo }}{% else %}{% static 'public/img/user_img/equipe.png' %}{% endif %}"
+                                                             alt="Card image cap">
+                                                        <a href="#">
+                                                            <div class="mask rgba-white-slight"></div>
+                                                        </a>
+                                                    </div>
+
+                                                    <!-- Card content -->
+                                                    <div class="card-body card-body-cascade text-center">
+
+                                                        <!-- Title -->
+                                                        <h6 class="card-title"><strong>{{ event.away_team }}</strong>
+                                                        </h6>
+
+                                                    </div>
+
+                                                </div>
+                                                <!-- Card Wider -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--Grid column-->
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                        <!--Grid row-->
+                    {% else %}
+
+                        <p class="empty">PAS D'INFORMATIONS A AFFICHER</p>
+
+                    {% endif %}
+                </div>
+                <hr class="mb-5">
+                <!--Pagination-->
+                <nav class="d-flex justify-content-center wow fadeIn">
+                    <ul class="pagination pg-blue">
+                        {% if data.has_previous %}
+                            <!--Arrow left-->
+                            <li class="page-item">
+                                <a class="page-link" style="display: inline!important;" aria-label="Previous"
+                                   href="?page=1">&laquo; first</a>
+                                <a class="page-link ml-1" style="display: inline!important;"
+                                   href="?page={{ data.previous_page_number }}" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            </li>
+                        {% endif %}.
+                        <li class="page-item active">
+                            <a class="page-link" href="#">Page {{ data.number }} of {{ data.paginator.num_pages }}
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        {% if data.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" style="display: inline!important;"
+                                   href="?page={{ data.next_page_number }}" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                                <a class="page-link ml-1" style="display: inline!important;" aria-label="Next"
+                                   href="?page={{ data.paginator.num_pages }}">last &raquo;</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+                <!--Pagination-->
+
+            </section>
+            <!--Section: Cards-->
+
+        </div>
+    </main>
+    <!--Main layout-->
+{% endblock %}
+{% block javascript %}
+
+{% endblock %}
